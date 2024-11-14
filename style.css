@@ -1,0 +1,233 @@
+/* Custom Properties */
+:root {
+    --primary: #2556eb;
+    --primary-dark: #1d4fd8;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+}
+
+/* Navigation Styles */
+nav {
+    transition: var(--transition);
+}
+
+nav.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link {
+    color: white;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link.scrolled {
+    color: #1f2937;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hero Section Hover Animation */
+.group:hover img {
+    transform: scale(1.1);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fade-in animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Buttons */
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+/* Product Section */
+#products {
+    background-color: #f9f9f9;
+    padding: 48px 0;
+    text-align: center;
+}
+
+#products h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+#products .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+    align-items: start;
+}
+
+#products .product-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#products .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#products .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+#products .product-card .card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+#products .product-card h3 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#products .product-card p {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+#products .product-card .price {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #1e40af;
+}
+
+/* Contact and Footer Background */
+.contact-background, .footer-background {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Set background image for the contact section */
+.contact-background {
+    background-image: url('images/contact-bg.jpg'); /* Add the path to your background image */
+}
+
+/* Overlay and content positioning */
+.contact-background::before, .footer-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity if needed */
+    z-index: 1;
+}
+
+/* Ensure the content appears above the overlay */
+.contact-background .container, .footer-background .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Text color adjustments */
+#contact h2, #contact p {
+    color: white;
+}
+
+/* Footer Background Image */
+.footer-background {
+    background-image: url('images/footer2.jpg'); /* Replace with your image path */
+    background-size: cover; /* Ensures the image covers the entire footer */
+    background-position: center; /* Centers the background image */
+    position: relative;
+  }
+  
+  .footer-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Optional dark overlay */
+    z-index: 1;
+  }
+  
+  .footer-background .container {
+    position: relative;
+    z-index: 2; /* Ensures content is above the overlay */
+  }
+  
+
+/* Media Queries */
+@media (max-width: 768px) {
+    #products .product-grid {
+        grid-template-columns: 1fr;
+    }
+}
